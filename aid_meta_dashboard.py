@@ -3,6 +3,20 @@
 LOGO_PATH = "AID.png"
 
 import streamlit as st
+if 'authenticated' not in st.session_state:
+    st.session_state.authenticated = False
+
+password = st.sidebar.text_input("Enter password", type="password")
+if st.sidebar.button("Login"):
+    if password == "AIDIntel":  # Change this!
+        st.session_state.authenticated = True
+    else:
+        st.error("Wrong password")
+
+if not st.session_state.authenticated:
+    st.stop()
+    
+
 import pandas as pd
 import numpy as np
 import plotly.express as px
