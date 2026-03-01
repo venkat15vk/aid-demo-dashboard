@@ -1,6 +1,6 @@
 
 
-LOGO_PATH = "/Users/vk/Desktop/Startup/AID/data/AID.png"
+LOGO_PATH = "AID.png"
 
 import streamlit as st
 import pandas as pd
