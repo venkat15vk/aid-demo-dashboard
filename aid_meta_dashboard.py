@@ -155,12 +155,31 @@ with tab2:
                            filtered['agent_name'].str.contains(search, case=False)]
     
     st.dataframe(
-        filtered[['agent_id', 'agent_name', 'behavior_bias', 'over_privilege_risk', 
-                  'blast_radius_score', 'anomaly_score', 'cluster_kmeans']].style.background_gradient(
-            subset=['over_privilege_risk'], cmap='Reds'
-        ),
-        use_container_width=True,
-        height=600
+        filtered[['agent_id', 'agent_name', 'behavior_bias', 'over_privilege_risk',
+                  'blast_radius_score', 'anomaly_score', 'cluster_kmeans']],
+        column_config={
+            "over_privilege_risk": st.column_config.ProgressColumn(
+                "Over Privilege Risk",
+                min_value=0.0,
+                max_value=1.0,
+            ),
+            "behavior_bias": st.column_config.ProgressColumn(
+                "Behavior Bias",
+                min_value=0.0,
+                max_value=1.0,
+            ),
+            "blast_radius_score": st.column_config.ProgressColumn(
+                "Blast Radius",
+                min_value=0.0,
+                max_value=1.0,
+            ),
+            "anomaly_score": st.column_config.ProgressColumn(
+                "Anomaly Score",
+                min_value=0.0,
+                max_value=1.0,
+            ),
+        },
+        height=600,
     )
 
     if not filtered.empty:
