@@ -1,10 +1,6 @@
 
 
-agentsBehavior = '/Users/vk/Desktop/Startup/AID/data/agents_behavior_moat.csv'
-agentsActivities = '/Users/vk/Desktop/Startup/AID/data/activities_behavior_moat.csv'
-modelFolder = '/Users/vk/Desktop/Startup/AID/models/'
-dataFolder = '/Users/vk/Desktop/Startup/AID/data/'
-
+LOGO_PATH = "/Users/vk/Desktop/Startup/AID/data/AID.png"
 
 import streamlit as st
 import pandas as pd
@@ -63,7 +59,7 @@ st.markdown("""
 # ──────────────────────────────────────────────────────────────
 # Load logo (your file path)
 # ──────────────────────────────────────────────────────────────
-LOGO_PATH = "/Users/vk/Desktop/Startup/AID/data/AID.png"
+
 
 if os.path.exists(LOGO_PATH):
     logo_img = open(LOGO_PATH, "rb").read()
@@ -79,9 +75,9 @@ st.sidebar.markdown("---")
 # ====================== LOAD ALL META LAYER DATA ======================
 @st.cache_data
 def load_data():
-    agents = pd.read_csv(agentsBehavior)
-    insights = pd.read_csv(dataFolder + 'agent_meta_insights.csv')
-    signatures = pd.read_pickle(modelFolder + 'agent_signatures_256dim.pkl')
+    agents = pd.read_csv('agents_behavior_moat.csv')
+    insights = pd.read_csv('agent_meta_insights.csv')
+    signatures = pd.read_pickle('agent_signatures_256dim.pkl')
     
 # Merge everything
     df = agents.merge(insights, on='agent_id', how='left')
