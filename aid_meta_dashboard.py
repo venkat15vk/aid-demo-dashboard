@@ -325,16 +325,8 @@ with tab6:
             res = df[df['blast_radius_score'] > thresh].sort_values('blast_radius_score', ascending=False)
             
             st.metric("High-Impact Agents", len(res))
-            print("Debug: res columns:")
-            print(res.columns.tolist())  # This will show in Streamlit logs or console
-            
-            missing_cols = [col for col in ['agent_id', 'agent_name', 'blast_radius_score', 'users_impacted_avg', 'rollback_avg', 'predicted_rollback_minutes'] if col not in res.columns]
-            if missing_cols:
-                st.error(f"Missing columns in res: {missing_cols}")
-                st.write("Available columns:", res.columns.tolist())
-                st.stop()  # Halt app so you see this immediately
             st.dataframe(
-                res[['agent_id', 'agent_name', 'blast_radius_score', 'users_impacted_avg', 
+                res[['agent_id', 'agent_name', 'blast_radius_score',  
                      'rollback_avg', 'predicted_rollback_minutes']].head(30).style.background_gradient(
                     subset=['blast_radius_score'], cmap='YlOrRd'
                 ),
