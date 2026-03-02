@@ -111,9 +111,6 @@ df, signatures = load_data()
 # Main title & branding
 # ──────────────────────────────────────────────────────────────
 col_logo, col_title = st.columns([1, 5])
-with col_logo:
-    if os.path.exists(LOGO_PATH):
-        st.image(logo_img, width=90)
 with col_title:
     st.title("Agent Identity Desk")
     st.caption("Intelligent Visibility & Governance for AI Agents • February 2026")
@@ -170,7 +167,7 @@ with tab2:
     
     st.dataframe(
         filtered[['agent_id', 'agent_name', 'behavior_bias', 'over_privilege_risk',
-                  'blast_radius_score', 'anomaly_score', 'cluster_kmeans']],
+                  'blast_radius_score', 'anomaly_score']],
         column_config={
             "over_privilege_risk": st.column_config.ProgressColumn(
                 "Over Privilege Risk",
